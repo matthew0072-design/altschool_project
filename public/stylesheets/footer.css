@@ -1,0 +1,9 @@
+.p-footer{
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-style: italic;
+    font-weight: 800;
+}

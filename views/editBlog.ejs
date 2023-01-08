@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <%- include("./partials/header") %>
+    <main>
+        
+
+
+<div>
+    <h3 class="my-3">Compose Your Blog Here... 😍 </h3>
+    <form action="/edit/<%= blog._id %>" method="POST">
+        <input type="text" value="<%= blog.title %>" name="title" placeholder="Enter Title" class="form-control" required>
+        <textarea name="content" cols="30" rows="10"  placeholder="Enter Content Here..."
+            required><%= blog.body %></textarea>
+            <button>Save Changes</button>
+        
+    </form>
+</div>
+
+
+    </main>
+    <%- include("./partials/footer") %>
+</body>
+</html>

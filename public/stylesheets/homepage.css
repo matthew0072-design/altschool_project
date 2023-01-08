@@ -1,0 +1,33 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+h1 {
+    text-align: center
+}
+
+.homepage-main {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100vh;
+    
+
+}
+
+.home-overall {
+    display: flex;
+    /* justify-content: center; */
+    margin-left: 1rem;
+    gap: 1rem;
+    width: 100%;        
+    
+}
+
+.home-link {
+    text-decoration: none;
+    border: 1px solid grey;
+    padding: 2rem;
+}

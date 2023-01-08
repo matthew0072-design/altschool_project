@@ -1,0 +1,36 @@
+<head>
+  <link rel="stylesheet" href="/stylesheets/register.css">
+  <link rel="stylesheet" href="/stylesheets/footer.css">
+</head>
+    
+      <%- include('./partials/header'); %>
+  
+    <main>
+      <section class="join">
+        <h3>JOIN</h3>
+
+        <p>Welcome back!!! <br> Register to Join</p>
+      </section>
+    
+<section class="form">
+  <h3>Enter your credentials</h3>
+  <form method="POST" action="/signup">
+    <label for="first_name">First Name </label> <br>
+    <input type="text" placeholder="Enter your first name...." name="first_name" /><br>
+  
+    <label for="last_name">Last Name </label> <br>
+  <input type="text" placeholder="Enter your last name" name="last_name" /><br>
+
+  <label for="email">Email </label> <br>
+  <input type="email" placeholder="Enter your Email Address" name="email"/> <br>
+
+  <label for="password">Password </label> <br>
+  <input type="password" placeholder="Enter your password" name="password"/><br>
+    <button>Submit</button>
+  </form>
+</section>
+</main>
+
+  <%- include('./partials/footer'); %>
+
+

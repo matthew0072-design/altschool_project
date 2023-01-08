@@ -1,0 +1,28 @@
+.form-main {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+
+input, textarea {
+    padding: 6px 12px;
+    width: 200%;
+    border: 1px solid #0099cc
+}
+
+button {
+    /* width: 200%; */
+    text-align: center;
+    
+    padding: 10px 12px;
+    border: none;
+    background-color: #0099cc;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: rgb(19, 87, 181);
+}

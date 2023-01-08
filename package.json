@@ -6,8 +6,7 @@
   "scripts": {
     "start": "cross-env NODE_ENV=production node server.js",
     "dev": "cross-env NODE_ENV=development nodemon server.js",
-    "test": " cross-env NODE_ENV=test jest --verbose --runInBand --detectOpenHandles",
-    "test:watch": "jest --watch"
+    "test": "cross-env NODE_ENV=test jest --verbose --runInBand --detectOpenHandles"
   },
   "jest": {
     "testEnvironment": "node",
@@ -17,8 +16,10 @@
   },
   "dependencies": {
     "bcrypt": "^5.1.0",
+    "cookie-parser": "^1.4.6",
     "debug": "~2.6.9",
     "dotenv": "^16.0.3",
+    "ejs": "^3.1.8",
     "express": "^4.18.2",
     "http-errors": "~1.6.3",
     "jsonwebtoken": "^8.5.1",

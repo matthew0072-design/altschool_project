@@ -18,7 +18,7 @@ const { title, description, tags, body, state } = req.body
     try {
         
         await blog.save()
-        res.status(201).send(blog);
+        res.status(201).redirect('/');
       
         
      }catch(err){  
@@ -60,7 +60,9 @@ const getAllPublishedBlogs =  async(req, res) => {
    
 try {
     const blogs = await Blog.find( searchableQuery).limit(limit * 1).skip((page - 1) * limit ).sort(sort)
-    res.status(200).send(blogs)
+    res.locals.blogs = blogs
+    console.log(res.locals.blogs)
+    res.status(200).render('homepage', { blogs: res.locals.blogs })
 
 } catch(err) {
     
@@ -71,7 +73,8 @@ try {
 }
 
 //to get the list of article created by the owner
-const getAllBlogsByOwner =  async(req, res) => {
+
+const getAllBlogsByOwner =  async (req, res) => {
    
     const filterState = {
         state: ""
@@ -81,24 +84,33 @@ const getAllBlogsByOwner =  async(req, res) => {
             
       if (req.query.state === "draft") {
         filterState.state = "draft"
-      }else {
+      } else if (req.query.state === "published")  {
         filterState.state = "published"
+      } else {
+        filterState.state = ""
       }
+
+
+      console.log(filterState)
         
 
         try {
-            
-        await req.user.populate({ 
+            // const blogs = await Blog.find({})
+        await req.user.populate({  
             
            path: 'blogs',  
-           match: filterState,
+        //    match: filterState,
            options: {
             limit: parseInt(req.query.limit),
             skip: parseInt(req.query.skip)
            } 
             
         })
-        res.status(200).send(req.user.blogs)
+        res.locals.blogs = req.user.blogs
+        // res.locals.blogs = blogs
+        res.status(200).render('userBlog', {
+            userBlogs: res.locals.blogs
+        })
         
     } catch(err) {   
         
@@ -119,7 +131,12 @@ const getBlog = async (req, res) => {
         }
         blog.read_count += 1;
         await blog.save()
-        res.status(200).send(blog)
+        res.locals.blog = blog
+    
+        res.status(200).render('blog', {
+            
+            blog: res.locals.blog
+        })
 
 
     }catch (err) {
@@ -129,16 +146,52 @@ const getBlog = async (req, res) => {
   
 
 const updateBlogState = async (req, res) => {
+    const state = req.body.state
     
     try {
-        const blog = await Blog.findByIdAndUpdate({_id:req.params.id, owner: req.user._id}, {state: req.body.state}, {new:true, runValidators:true})
-        res.status(200).send(blog)
+        const blog = await Blog.findByIdAndUpdate({_id:req.params.id, owner: req.user._id}, {state}, {new:true, runValidators:true})
+        await blog.save()
+        res.status(200).redirect('/')
 
     }catch(err) {
         console.log(err)
         res.status(500).send(err)
     }
 }
+
+
+const editState = async (req, res) => {
+    
+    
+    try {
+    const editState = await Blog.findOne({_id:req.params.id, owner: req.user._id})
+    res.locals.state = editState
+    res.status(200).render('state', {
+        state: res.locals.state
+    })
+        
+    } catch (err) {
+        console.log(err)
+        res.status(500).send(err)
+    }
+}
+
+const getEditBlog = async (req, res) => {
+    
+    
+    try {
+    const updateBlog = await Blog.findOne({_id:req.params.id, owner: req.user._id})
+    res.locals.updateBlog = updateBlog
+    res.status(200).render('updateBlog', {
+        updateBlog: res.locals.updateBlog
+    })
+        
+    } catch (err) {  
+        console.log(err)
+        res.status(500).send(err)
+    }
+}
+
 
 const editBlog = async (req, res) => {
 
@@ -158,7 +211,7 @@ const editBlog = async (req, res) => {
 updates.forEach((update) => blog[update] = req.body[update]) 
 await blog.save()
 
-        res.status(200).send(blog)
+        res.status(200).redirect('/')
     }catch(err) { 
         
         res.status(400).send(err)
@@ -168,15 +221,17 @@ await blog.save()
 const deleteBlog = async (req, res) => {
     
     try {
+    
         const blog = await Blog.findOneAndDelete({_id: req.params.id, owner: req.user._id})
+    
         if(!blog) {
             return res.status(404).send("blog not found")
         }
-        res.status(200).send( blog)
+        res.status(200).redirect('/')
     } catch (err) {
         res.status(500).send(err)
     }
 }
  
 
-    module.exports = {editBlog, postNewArticle, getAllPublishedBlogs, getBlog, deleteBlog, getAllBlogsByOwner, updateBlogState }
+    module.exports = {editBlog, postNewArticle, getAllPublishedBlogs, getBlog, deleteBlog, getAllBlogsByOwner, updateBlogState, editState, getEditBlog }

@@ -23,6 +23,8 @@ beforeAll(async () => {
     const loginDetails = await api.post('/login').set('content-type', 'application/json')
     .send({email: "matthew@yahoo.com", password: "matthew0072"})
     
+    token = loginDetails._body.user.tokens.map(token => token.token)
+    
   });
   
 
@@ -58,6 +60,27 @@ describe('GET request to get the lists of published blog', () => {
         .expect('Content-Type', /application\/json/)
   
     })
-  
+
+    
+    it("Should only create blog if user is logged in", async () => {
+      const response = await api
+        .post('/article')
+        .set("Content-Type", "application/json")
+        .set("Authorization", `Bearer ${token}`)
+        .send(articleToBePosted)
+       .expect(201)
+       
+      //  expect(response.body.status).toStrictEqual("success");
+      // expect(response.body.data.blog).toBeTruthy();
+      // expect(response.body.data.blog.title).toBe("test2");
+      // expect(response.body.data.blog.author).toBeTruthy();
+      // expect(response.body.data.blog.author).toBe(author.id);
+    });
+
+
+
+
 })
+
+
 

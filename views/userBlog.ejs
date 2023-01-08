@@ -1,0 +1,38 @@
+<head>
+    <link rel="stylesheet" href="/stylesheets/userBlog.css"/>
+    <link rel="stylesheet" href="/stylesheets/footer.css"/>
+</head>
+    <%- include("./partials/header") %>
+    <main class="userBlog-main">
+
+<div class="userBlog-overall">
+   
+    <% for (let userBlog of userBlogs) { %>
+        
+            <div class="userBlog-link">
+                <p> <%= userBlog.title %> </p>
+                <p> <%= userBlog.description  %> </p> 
+                <div class="button-link">
+                        <a href="/blog/edit/<%= userBlog.id  %> " class="update">Edit</a>
+                        <a href="/blog/state/<%= userBlog.id %> " class="updateState">Update State</a>
+                        <a href="/post/<%= userBlog.id %> " class="delete">Delete</a>
+                        <!-- <form action="/post/<#%= userBlog.id %>" method="DELETE">
+                        <input type="hidden" name="_method" value="Delete" />
+                        <button> Delete </button>
+                        </form> -->
+                    
+                </div>
+
+            </div>
+        
+                    
+
+        <% } %> 
+           
+           
+              
+</div>
+
+
+    </main>
+    <%- include("./partials/footer") %>

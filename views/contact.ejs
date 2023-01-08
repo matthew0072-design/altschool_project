@@ -1,0 +1,33 @@
+
+<head>
+<link rel="stylesheet" href="/stylesheets/contact.css" />
+</head>
+
+<%- include("./partials/header") %>
+<main class="contact-main">
+    <section class="form-wrapper">
+        <h3 class="form-heading"> Get in touch</h3>
+        
+        <form>
+            <div class="div-wrapper">
+                <label>
+                    <input type="text" name="name" placeholder="Name" class="input-div" />
+                </label>
+                <label><input type="email" name="email" placeholder="Email" class="input-div"/> </label>
+            </div><br>
+            <label><input type="text" name="subject" placeholder="Subject" /></label><br>
+            <textarea cols="30" rows="10">Message </textarea><br>
+            <button>Send Message</button>
+        
+        </form>
+    </section>
+
+    <section class="contact-wrapper">
+            <h3>Contact us</h3>
+            <p class="address"><address><strong>Address:</strong> 198 West 21th Street, Suite 721 New York NY 10016</address></p>
+            <p><strong>Phone:</strong> +1235 2355 98</p>
+            <p><strong>Email:</strong> info@mattscript.com</p>
+            <p><strong>Website:</strong> mattscript.com</p>
+    </section>
+</main>
+<%- include("./partials/footer") %>

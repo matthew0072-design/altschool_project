@@ -1,0 +1,28 @@
+<head>
+    <link rel="stylesheet" href="/stylesheets/footer.css">
+    <link rel="stylesheet" href="/stylesheets/homepage.css">
+</head>
+        <%- include('./partials/header'); %>
+     <main class="homepage-main">
+        <h1>Blogs</h1>
+        <div class="home-overall">
+       <% for (let blog of blogs) { %>
+       
+
+            <a href="/blog/<%= blog.id %> " class="home-link">
+                
+                    <p> <%= blog.title %> </p>
+                    <p> <%= blog.description  %> </p> 
+                
+            </a>
+        
+            
+           
+        
+
+        <% } %> 
+    </div>
+    </main>
+    
+        <%- include('./partials/footer'); %>
+    

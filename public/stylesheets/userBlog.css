@@ -1,0 +1,68 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+h1 {
+    text-align: center
+}
+
+.userBlog-main {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    
+
+}
+
+.userBlog-overall {
+    display: flex;
+    justify-content: flex-start;
+    gap: 1rem;
+    flex-wrap: wrap;
+    width: 100%;  
+    margin: 1rem;      
+    
+}
+
+.userBlog-link {
+    
+    border: 1px solid grey;
+    padding: 2rem;
+}
+
+.button-link {
+
+    text-decoration: none;
+    display: flex;
+    gap: 10px;
+    margin-top: 1rem;
+}
+
+.update {
+    background-color: blue;
+    color: white;
+    border: none;
+    text-decoration: none;
+    width: 3rem;
+    text-align: center;
+}
+
+.updateState {
+    background-color: green;
+    color: white;
+    border: none;
+    text-decoration: none;
+    width: auto;
+    text-align: center;
+}
+
+.delete {
+    background-color: red;
+    color: white;
+    border: none;
+    text-decoration: none;
+    width: auto;
+    text-align: center;
+}

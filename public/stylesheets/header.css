@@ -1,0 +1,38 @@
+*{
+    padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+}
+.menu {
+	background: #1089FF;
+	color: #FFF;
+	height: 45px;
+    width: 100%
+}
+
+.menu ul {
+    list-style: none;
+	width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    gap: 50px;
+    align-items: center;
+	padding-right: 3rem;
+}
+
+.menu a {
+	display: block;
+	line-height: 45px;
+	padding: 2 3px;
+	text-decoration: none;
+	color: #FFFFFF;
+	font-size: 1rem;
+}
+
+.menu li a:hover {
+	color: #1089FF;
+	background: #F2F2F2;
+}
+
+
+

@@ -1,0 +1,35 @@
+    <head>
+        <link rel="stylesheet" href="/stylesheets/article.css"/>
+        <link rel="stylesheet" href="/stylesheets/footer.css"/>
+    </head>
+
+    <%- include("./partials/header") %>
+    <main class="form-main">
+
+    <form action="/blog/edit/<%= updateBlog.id %> " method="POST">
+        <label> Title <br>
+            <input type="text" name="title" value="<%= updateBlog.title %> "/><br>
+        </label>
+        <label> Description <br>
+            <input type="text" name="description" value="<%= updateBlog.description %>"/><br>
+        </label>
+        <label>Tags<br>
+        <input type="text" name="tags" value="<%= updateBlog.tags %>"/><br>
+        </label>
+        <label>State <br>
+        <input type="text" name="state" value="<%= updateBlog.state %>"/>
+        </label>
+        <label>Body <br>
+            <textarea rows="20" cols="20" name="body" >"<%= updateBlog.body %></textarea><br>
+        </label>
+
+        <button>Update Blog</button>
+    </form>
+            <!-- <form action="/blog/<#%= state.id %>" method="POST">
+                <input type="text" name="state" value="<#%= state.state %> " placeholder="Update State"/>
+                <button>Update</button>
+            </form>       -->
+
+
+    </main>
+    <%- include("./partials/footer") %>

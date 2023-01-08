@@ -27,12 +27,7 @@ const userSchema = new Schema(
         type: String,
         required: true,
       },
-      tokens : [{
-        token: {
-          type: String,
-          required: true
-        }
-      }],
+      
       
     },
     {
@@ -45,13 +40,13 @@ const userSchema = new Schema(
   userSchema.statics.findByDetails = async (email, password) => {
     const user = await User.findOne({email})
     if(!user) {
-      throw new Error('Unable to login')
+      throw new Error('User does not exist')
     }
     const isMatch = await bcrypt.compareSync(password, user.password)
     
-    if(!isMatch) {
-      throw new Error('Unable to login')
-    }
+    if(!isMatch) { 
+      throw new Error('password is not correct')
+    }  
     return user
   } 
 
@@ -67,8 +62,8 @@ userSchema.methods.generateToken = async function () {
     const user = this
     const token = jwt.sign({_id: user._id.toString()}, process.env.JWT_SECRET, {expiresIn: '1h'})
 
-    user.tokens = user.tokens.concat({ token })
-    await user.save()
+    // user.tokens = user.tokens.concat({ token })
+    // await user.save()
     return token
 
 }
